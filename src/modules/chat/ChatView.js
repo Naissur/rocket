@@ -16,6 +16,12 @@ export default class Chat extends React.PureComponent {
     this.setState({ chatMessage: val });
   }
 
+  handleTextAreaKeyDown = ev => {
+    if ((ev.keyCode === 13) && ev.ctrlKey) {
+      this.sendChatMessage();
+    }
+  }
+
   sendChatMessage = () => {
     debug('yay', this.state.chatMessage);
     this.setState({ chatMessage: '' });
@@ -32,8 +38,14 @@ export default class Chat extends React.PureComponent {
             placeholder="Сообщение"
             value={this.state.chatMessage}
             onChange={this.handleChatMessageChange}
+            onKeyDown={this.handleTextAreaKeyDown}
           />
-          <Button onClick={this.sendChatMessage}>Отправить</Button>
+          <Button
+            className="chat-view__send-button"
+            onClick={this.sendChatMessage}
+          >
+            Отправить
+          </Button>
         </div>
       </div>
     );
