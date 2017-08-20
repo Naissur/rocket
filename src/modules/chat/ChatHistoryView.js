@@ -12,14 +12,14 @@ class ChatMessage extends React.PureComponent {
     const { message } = this.props;
 
     if (message.type === 'message') {
-      const { text, userAvatar, userName } = message;
+      const { text, userAvatar, userName, fromMe } = message;
 
       return (
         <UserMessageView
           text={text}
           userAvatar={userAvatar}
           userName={userName}
-          alignRight
+          alignRight={!!fromMe}
         />
       );
     }

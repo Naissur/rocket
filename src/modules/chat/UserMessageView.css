@@ -1,9 +1,11 @@
 .root {
   display: flex;
-  margin-bottom: 30px;
+  margin-bottom: 24px;
+  font-size: 14px;
 }
 
 .avatar {
+  margin-top: 2px;
 }
 
 .text {

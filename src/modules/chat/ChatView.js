@@ -11,9 +11,10 @@ const INITIAL_MESSAGES = [
   {
     id: 1,
     type: 'message',
-    text: 'можете проверить мой счёт? Я вчера им пользовался',
-    userAvatar: 'https://randomuser.me/api/portraits/men/51.jpg',
-    userName: 'Евгений'
+    text: 'могу',
+    userAvatar: 'https://randomuser.me/api/portraits/men/35.jpg',
+    userName: 'Иван',
+    fromMe: true
   }, {
     id: 2,
     type: 'message',
