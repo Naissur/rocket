@@ -1,7 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
 
-import './Button.css';
+import s from './Button.css';
 
 
 export default class Button extends React.PureComponent {
@@ -10,7 +10,7 @@ export default class Button extends React.PureComponent {
 
     return (
       <button
-        className={cn('button', className)}
+        className={cn(s.button, className)}
         {...restProps}
       >
         {children}

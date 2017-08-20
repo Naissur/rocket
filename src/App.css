@@ -15,12 +15,12 @@ h1, h2, h3, h4, h5, h6 {
   flex-direction: row;
 }
 
-.app__chat-container {
+.chatContainer {
   background-color: #f4f4f4;
   flex: 2;
 }
 
-.app__accounts-container {
+.accountsContainer {
   max-width: 545px;
   flex: 1;
 }

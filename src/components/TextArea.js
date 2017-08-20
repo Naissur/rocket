@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import cn from 'classnames';
 
-import './TextArea.css';
+import s from './TextArea.css';
 
 
 export default class TextArea extends React.PureComponent {
@@ -12,7 +12,7 @@ export default class TextArea extends React.PureComponent {
 
     return (
       <textarea
-        className={cn('text-area', className)}
+        className={cn(s.textArea, className)}
         value={value}
         onChange={ev => (onChange && onChange(ev.target.value))}
         {...restProps}

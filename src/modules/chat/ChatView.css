@@ -1,17 +1,17 @@
-.chat-view {
+.chatView {
 }
 
-.chat-view__send-container {
+.sendContainer {
   display: flex;
   flex-direction: column;
   padding: 70px 80px;
 }
 
-.chat-view__heading {
+.heading {
   margin-bottom: 11px;
 }
 
-.chat-view__text-area {
+.textArea {
   resize: none;
   width: 100%;
   min-height: 100px;
@@ -19,7 +19,7 @@
   margin-bottom: 10px;
 }
 
-.chat-view__send-button {
+.sendButton {
   width: 100px;
   margin-left: auto;
 }

@@ -8,7 +8,7 @@ import {
 import ChatView from './modules/chat/ChatView';
 
 // import logo from './logo.svg';
-import './App.css';
+import s from './App.css';
 
 const Accounts = () => (
   <div>
@@ -32,12 +32,12 @@ const Investments = () => (
 
 const BasicExample = () => (
   <Router>
-    <div className="app">
-      <div className="app__chat-container">
+    <div className={s.app}>
+      <div className={s.chatContainer}>
         <ChatView />
       </div>
 
-      <div className="app__accounts-container">
+      <div className={s.accountsContainer}>
         <Route exact path="/accounts" component={Accounts} />
         <Route path="/investments" component={Investments} />
         <Redirect to="/accounts" />
