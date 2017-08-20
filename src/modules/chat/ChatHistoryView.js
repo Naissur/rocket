@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import UserMessageView from './UserMessageView';
@@ -29,6 +30,9 @@ class ChatMessage extends React.PureComponent {
   }
 }
 
+@connect(state => ({
+  messages: state.chat.messages
+}))
 export default class ChatHistoryView extends React.PureComponent {
   render() {
     const { messages } = this.props;

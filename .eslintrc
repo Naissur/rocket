@@ -67,7 +67,7 @@
     "import/export": 2,
 
     // indentation
-    "indent": [ 2, 2 ],
+    "indent": [ 2, 2, { "SwitchCase": 1 } ],
 
     // spacing
     "space-in-parens": [ 2, "never" ],
