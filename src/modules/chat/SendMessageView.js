@@ -1,10 +1,18 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { sendChatTextMessage } from './ChatState';
+
 import TextArea from '../../components/TextArea';
 import Button from '../../components/Button';
 
 import s from './SendMessageView.css';
 
 
+@connect(null, dispatch => bindActionCreators({
+  sendChatTextMessage
+}, dispatch))
 export default class ChatSendMessageView extends React.PureComponent {
   state = {
     chatMessage: ''
@@ -16,12 +24,19 @@ export default class ChatSendMessageView extends React.PureComponent {
 
   handleTextAreaKeyDown = ev => {
     if ((ev.keyCode === 13) && ev.ctrlKey) {
-      this.sendChatMessage();
+      this.sendMessage();
     }
   }
 
-  sendChatMessage = () => {
-    this.props.onSendMessage(this.state.chatMessage);
+  sendMessage = () => {
+    this.props.sendChatTextMessage({
+      type: 'message',
+      text: this.state.chatMessage,
+      userAvatar: 'https://randomuser.me/api/portraits/men/35.jpg',
+      userName: 'Иван',
+      fromMe: true
+    });
+
     this.setState({ chatMessage: '' });
   }
 
@@ -40,7 +55,7 @@ export default class ChatSendMessageView extends React.PureComponent {
           />
           <Button
             className={s.sendButton}
-            onClick={this.sendChatMessage}
+            onClick={this.sendMessage}
           >
             Отправить
           </Button>

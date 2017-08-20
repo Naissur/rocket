@@ -12,7 +12,7 @@ class ChatMessage extends React.PureComponent {
   render() {
     const { message } = this.props;
 
-    if (message.type === 'message') {
+    if (message.type === 'text') {
       const { text, userAvatar, userName, fromMe } = message;
 
       return (
@@ -48,6 +48,6 @@ export default class ChatHistoryView extends React.PureComponent {
 }
 
 ChatHistoryView.propTypes = {
-  messages: PropTypes.arrayOf(PropTypes.shape()).isRequired
+  messages: PropTypes.arrayOf(PropTypes.shape())
 };
 
