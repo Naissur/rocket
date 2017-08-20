@@ -1,3 +1,14 @@
+* {
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+}
+
 .app {
   height: 100vh;
   display: flex;
@@ -6,7 +17,7 @@
 
 .app__chat-container {
   background-color: #f4f4f4;
-  flex: 1;
+  flex: 2;
 }
 
 .app__accounts-container {
