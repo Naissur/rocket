@@ -32,13 +32,15 @@
     "react/jsx-closinng-bracket-location": 0,
     "react/jsx-closing-bracket-location": 0,
     "react/prop-types": 0,
+    "react/no-unescaped-entities": 0,
+    "react/no-multi-comp": 0,
+
     "one-var": 0,
 
     "comma-dangle": ["error", "only-multiline"],
 
     "require-yield": 0,
     "prefer-arrow-callback": 0,
-    "react/no-unescaped-entities": 0,
 
     "react/no-unknown-property": 1,
     "object-property-newline": 0,

@@ -2,7 +2,7 @@ import React from 'react';
 import TextArea from '../../components/TextArea';
 import Button from '../../components/Button';
 
-import s from './ChatSendMessageView.css';
+import s from './SendMessageView.css';
 
 
 export default class ChatSendMessageView extends React.PureComponent {
