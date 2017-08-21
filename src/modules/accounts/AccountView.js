@@ -5,6 +5,8 @@ import s from './AccountView.css';
 import Currency from '../../components/Currency';
 import Signed from '../../components/Signed';
 
+import MaximizeIcon from '../../icons/maximize';
+
 
 const formatDate = date => moment(date).format('DD.MM.YYYY | HH:mm');
 
@@ -23,6 +25,9 @@ export default class AccountView extends React.PureComponent {
 
     return (
       <div className={s.root}>
+        <div className={s.expand}>
+          <MaximizeIcon />
+        </div>
         <h3 className={s.id}>
           Счёт №{id}
         </h3>

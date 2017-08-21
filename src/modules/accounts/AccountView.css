@@ -1,5 +1,21 @@
 .root {
+  position: relative;
   padding: 24px 32px;
+}
+
+.root:nth-child(even) {
+  border-top: solid 1px #eeeeee;
+  background-color: #f9f9f9;
+}
+
+.expand {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  padding: 8px;
+
+  cursor: pointer;
 }
 
 .id {
