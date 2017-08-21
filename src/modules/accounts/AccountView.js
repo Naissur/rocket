@@ -3,6 +3,7 @@ import moment from 'moment';
 
 import s from './AccountView.css';
 import Currency from '../../components/Currency';
+import Signed from '../../components/Signed';
 
 
 const formatDate = date => moment(date).format('DD.MM.YYYY | HH:mm');
@@ -11,6 +12,14 @@ const formatDate = date => moment(date).format('DD.MM.YYYY | HH:mm');
 export default class AccountView extends React.PureComponent {
   render() {
     const { id, balance, currency, annualPercent, createdAt, lastOperation } = this.props;
+
+    const lastOpAmountPositive = lastOperation && lastOperation.amount > 0;
+
+    const LastOp = lastOperation && (
+      <Signed positive={lastOpAmountPositive}>
+        {lastOpAmountPositive ? '+' : '-'} {lastOperation.amount} <Currency currency={lastOperation.currency} />
+      </Signed>
+    );
 
     return (
       <div className={s.root}>
@@ -30,7 +39,7 @@ export default class AccountView extends React.PureComponent {
         </div>
 
         <div className={s.lastOperation}>
-          Последняя операция: {formatDate(lastOperation.date)} (+ 3)
+          Последняя операция: {formatDate(lastOperation.date)} ({LastOp})
         </div>
       </div>
     );
