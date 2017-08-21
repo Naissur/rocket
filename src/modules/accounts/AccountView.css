@@ -1,0 +1,16 @@
+.root {
+}
+
+.id {
+  margin-bottom: 6px;
+}
+
+.balance {
+  margin-bottom: 6px;
+}
+
+.annual, .createdAt, .lastOperation {
+  color: #999999;
+}
+
+
