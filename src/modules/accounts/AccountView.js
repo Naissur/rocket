@@ -2,6 +2,8 @@ import React from 'react';
 import moment from 'moment';
 
 import s from './AccountView.css';
+import Currency from '../../components/Currency';
+
 
 const formatDate = date => moment(date).format('DD.MM.YYYY | HH:mm');
 
@@ -16,7 +18,7 @@ export default class AccountView extends React.PureComponent {
           Счёт №{id}
         </h3>
         <h2 className={s.balance}>
-          {balance}{currency}
+          {balance} <Currency currency={currency} />
         </h2>
 
         <div className={s.annual}>
