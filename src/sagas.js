@@ -1,3 +1,6 @@
+import { fork } from 'redux-saga/effects';
+import { ChatSagas } from './modules/chat/ChatState';
+
 export default function* () {
-  console.log('yay');
+  yield fork(ChatSagas);
 }

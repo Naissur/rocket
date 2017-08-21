@@ -1,3 +1,6 @@
+import { fork, put } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
+
 const uuid = require('uuid/v4');
 
 // initial state
@@ -67,3 +70,17 @@ export default (state = initialState, action) => {
   }
 };
 
+
+export function* ChatSagas() {
+  yield fork(initChatSaga);
+}
+
+function* initChatSaga() {
+  yield delay(2000);
+  yield put(sendChatTextMessage({
+    type: 'text',
+    text: 'мммммможете?',
+    userAvatar: 'https://randomuser.me/api/portraits/men/51.jpg',
+    userName: 'Евгений'
+  }));
+}
