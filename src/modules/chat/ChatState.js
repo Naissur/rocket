@@ -1,5 +1,7 @@
 import { fork, put, takeLatest } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
+import moment from 'moment';
+
 import { randomArrayItem } from '../../utils';
 
 const debug = require('debug')('rocket:chat-state');
@@ -14,25 +16,29 @@ const INITIAL_MESSAGES = [
     text: 'могу',
     userAvatar: 'https://randomuser.me/api/portraits/men/35.jpg',
     userName: 'Иван',
-    fromMe: true
+    fromMe: true,
+    date: moment().toJSON()
   }, {
     id: 1,
     type: 'text',
     text: 'можете?',
     userAvatar: 'https://randomuser.me/api/portraits/men/51.jpg',
-    userName: 'Евгений'
+    userName: 'Евгений',
+    date: moment('2017-03-07').toJSON()
   }, {
     id: 2,
     type: 'text',
     text: 'можете? можете? можете? можете?м ожете?можете?можете?можете?можетеможетеможетеможете?можете????можете?',
     userAvatar: 'https://randomuser.me/api/portraits/men/51.jpg',
-    userName: 'Евгений'
+    userName: 'Евгений',
+    date: moment('2017-03-05').toJSON()
   }, {
     id: 3,
     type: 'text',
     text: 'можете?',
     userAvatar: 'https://randomuser.me/api/portraits/men/51.jpg',
-    userName: 'Евгений'
+    userName: 'Евгений',
+    date: moment('2017-03-05').toJSON()
   }
 ];
 
@@ -52,7 +58,7 @@ export const CHAT_SEND_MESSAGE = 'chat/SEND_MESSAGE';
 export const sendChatTextMessage = ({ text, userAvatar, userName, fromMe }) => ({
   type: CHAT_SEND_MESSAGE,
   message: {
-    id: uuid(), type: 'text', text, userAvatar, userName, fromMe
+    id: uuid(), date: moment().toJSON(), type: 'text', text, userAvatar, userName, fromMe
   }
 });
 

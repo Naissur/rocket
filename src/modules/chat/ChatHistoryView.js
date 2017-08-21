@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { groupBy, keys } from 'ramda';
+
+import moment from 'moment';
 
 import UserMessageView from './UserMessageView';
 
@@ -25,7 +28,24 @@ class ChatMessage extends React.PureComponent {
       );
     }
     return (
-      <div>(unrecogrized chat message type)</div>
+      <noscript />
+    );
+  }
+}
+
+class ChatHistoryDateGroup extends React.PureComponent {
+  render() {
+    const { date, messages } = this.props;
+
+    return (
+      <div className={s.dateGroup}>
+        <div className={s.date}>
+          — {date} —
+        </div>
+        {messages.map(message => (
+          <ChatMessage key={message.id} message={message} />
+        ))}
+      </div>
     );
   }
 }
@@ -37,10 +57,17 @@ export default class ChatHistoryView extends React.PureComponent {
   render() {
     const { messages } = this.props;
 
+    const groupedByDate = groupBy(msg => moment(msg.date).format('DD.MM.YYYY'), messages);
+    const vals = keys(groupedByDate).sort().reverse();
+
     return (
       <div className={s.root}>
-        {messages.map(message => (
-          <ChatMessage key={message.id} message={message} />
+        {vals.map(date => (
+          <ChatHistoryDateGroup
+            key={date}
+            messages={groupedByDate[date]}
+            date={date}
+          />
         ))}
       </div>
     );
