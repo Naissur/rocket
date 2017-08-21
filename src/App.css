@@ -29,7 +29,40 @@ b {
   flex: 1;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+
+.accountsInvestmentsView {
 }
+
+.nav {
+  padding: 60px 80px;
+  display: flex;
+  flex-direction: row;
+}
+
+.accounts, .investments {
+  display: block;
+  padding: 10px 40px;
+  flex: 1;
+
+  border-radius: 4px;
+  border: solid 1px #52aff1;
+
+  text-align: center;
+  text-decoration: none;
+  color: #52aff1;
+}
+
+.accounts {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.investments {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.accounts.active, .investments.active {
+  background-color: #52aff1;
+  color: white;
+}
+

@@ -3,32 +3,35 @@ import {
   BrowserRouter as Router,
   Route,
   Redirect,
+  Link
 } from 'react-router-dom';
+import cn from 'classnames';
 
 import ChatView from './modules/chat/ChatView';
+import AccountsView from './modules/accounts/AccountsView';
+import InvestmentsView from './modules/investments/InvestmentsView';
 
 // import logo from './logo.svg';
 import s from './App.css';
 
-const Accounts = () => (
-  <div>
-    <h2>Accounts</h2>
-  </div>
-);
+const AccountsInvestmentsView = ({ match }) => {
+  const { url } = match;
 
-const Investments = () => (
-  <div>
-    <h2>Investments</h2>
-  </div>
-);
-
-/*
-      <ul>
-        <li><Link to="/accounts">Accounts</Link></li>
-        <li><Link to="/investments">Investments</Link></li>
-      </ul>
-
-*/
+  return (
+    <div className={s.accountsInvestmentsView}>
+      <div className={s.nav} >
+        <Link className={cn(s.accounts, (url === '/accounts') && s.active)} to="/accounts">
+          Счета
+        </Link>
+        <Link className={cn(s.investments, (url === '/investments') && s.active)} to="/investments">
+          Вклады
+        </Link>
+      </div>
+      <Route path="/accounts" component={AccountsView} />
+      <Route path="/investments" component={InvestmentsView} />
+    </div>
+  );
+};
 
 const BasicExample = () => (
   <Router>
@@ -38,8 +41,8 @@ const BasicExample = () => (
       </div>
 
       <div className={s.accountsContainer}>
-        <Route exact path="/accounts" component={Accounts} />
-        <Route path="/investments" component={Investments} />
+        <Route exact path="/accounts" component={AccountsInvestmentsView} />
+        <Route path="/investments" component={AccountsInvestmentsView} />
         <Redirect to="/accounts" />
       </div>
     </div>
