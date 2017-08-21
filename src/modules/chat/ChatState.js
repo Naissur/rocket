@@ -1,5 +1,8 @@
-import { fork, put } from 'redux-saga/effects';
+import { fork, put, takeLatest } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
+import { randomArrayItem } from '../../utils';
+
+const debug = require('debug')('rocket:chat-state');
 
 const uuid = require('uuid/v4');
 
@@ -73,14 +76,36 @@ export default (state = initialState, action) => {
 
 export function* ChatSagas() {
   yield fork(initChatSaga);
+  yield takeLatest(CHAT_SEND_MESSAGE, replySaga);
 }
 
 function* initChatSaga() {
   yield delay(2000);
   yield put(sendChatTextMessage({
-    type: 'text',
     text: 'мммммможете?',
     userAvatar: 'https://randomuser.me/api/portraits/men/51.jpg',
     userName: 'Евгений'
   }));
+}
+
+const REPLY_PHRASES = [
+  'Нет',
+  'Да',
+  'Наверное',
+  'Жаль, что сказать'
+];
+
+function* replySaga(action) {
+  if (action.message.fromMe) {
+    debug('replying to message...');
+
+    yield delay(1500);
+    const text = randomArrayItem(REPLY_PHRASES);
+
+    yield put(sendChatTextMessage({
+      text,
+      userAvatar: 'https://randomuser.me/api/portraits/men/51.jpg',
+      userName: 'Евгений'
+    }));
+  }
 }

@@ -65,6 +65,7 @@
     "import/namespace": 2,
     "import/default": 2,
     "import/export": 2,
+    "import/prefer-default-export": 0,
 
     // indentation
     "indent": [ 2, 2, { "SwitchCase": 1 } ],
