@@ -17,7 +17,7 @@ export default class AccountView extends React.PureComponent {
 
     const LastOp = lastOperation && (
       <Signed positive={lastOpAmountPositive}>
-        {lastOpAmountPositive ? '+' : '-'} {lastOperation.amount} <Currency currency={lastOperation.currency} />
+        {lastOpAmountPositive ? '+' : '-'} {Math.abs(lastOperation.amount)} <Currency currency={lastOperation.currency} />
       </Signed>
     );
 
