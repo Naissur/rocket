@@ -1,0 +1,37 @@
+.root {
+  position: relative;
+  padding: 16px 80px;
+}
+
+.close {
+  position: absolute;
+  top: 12px;
+  right: 83px;
+
+  padding: 8px;
+
+  cursor: pointer;
+}
+
+.id {
+  margin-bottom: 6px;
+}
+
+.balance {
+  margin-bottom: 6px;
+}
+
+.annual, .createdAt, .lastOperation {
+  color: #999999;
+  font-size: 14px;
+}
+
+
+.history {
+}
+
+.title {
+  margin-top: 60px;
+  color: #999;
+}
+

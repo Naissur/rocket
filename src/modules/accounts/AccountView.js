@@ -1,6 +1,8 @@
 import React from 'react';
 import moment from 'moment';
 
+import { Link } from 'react-router-dom';
+
 import s from './AccountView.css';
 import Currency from '../../components/Currency';
 import Signed from '../../components/Signed';
@@ -25,9 +27,9 @@ export default class AccountView extends React.PureComponent {
 
     return (
       <div className={s.root}>
-        <div className={s.expand}>
+        <Link className={s.expand} to={`/accounts/${id}`}>
           <MaximizeIcon />
-        </div>
+        </Link>
         <h3 className={s.id}>
           Счёт №{id}
         </h3>
