@@ -2,6 +2,7 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Route,
+  Redirect,
   Link
 } from 'react-router-dom';
 import cn from 'classnames';
@@ -46,6 +47,7 @@ const BasicExample = () => (
         <Route path="/accounts/:id" component={AccountsInvestmentsView} />
         <Route exact path="/accounts" component={AccountsInvestmentsView} />
         <Route path="/investments" component={AccountsInvestmentsView} />
+        <Redirect to="/accounts" />
       </div>
     </div>
   </Router>

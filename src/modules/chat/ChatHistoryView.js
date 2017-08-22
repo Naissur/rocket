@@ -6,6 +6,8 @@ import { groupBy, keys } from 'ramda';
 import moment from 'moment';
 
 import UserMessageView from './UserMessageView';
+import OperationMessageView from './OperationMessageView';
+import { CHAT_MESSAGE_TEXT, CHAT_MESSAGE_OPERATION } from './ChatState';
 
 
 import s from './ChatHistoryView.css';
@@ -15,7 +17,7 @@ class ChatMessage extends React.PureComponent {
   render() {
     const { message } = this.props;
 
-    if (message.type === 'text') {
+    if (message.type === CHAT_MESSAGE_TEXT) {
       const { text, userAvatar, userName, fromMe } = message;
 
       return (
@@ -24,6 +26,19 @@ class ChatMessage extends React.PureComponent {
           userAvatar={userAvatar}
           userName={userName}
           alignRight={!!fromMe}
+        />
+      );
+    }
+
+    if (message.type === CHAT_MESSAGE_OPERATION) {
+      const { userAvatar, accountId, opId } = message;
+
+      return (
+        <OperationMessageView
+          userAvatar={userAvatar}
+          accountId={accountId}
+          opId={opId}
+          alignRight
         />
       );
     }

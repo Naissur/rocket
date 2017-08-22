@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cn from 'classnames';
+import MessageView from './MessageView';
 
-import UserAvatar from '../../components/UserAvatar';
 import s from './UserMessageView.css';
 
 
@@ -10,22 +9,13 @@ export default class UserMessageView extends React.PureComponent {
   render() {
     const { text, userAvatar, userName, alignRight } = this.props;
 
-    const Avatar = (
-      <div key="1" className={s.avatar}>
-        <UserAvatar url={userAvatar} />
-      </div>
-    );
-
-    const Text = (
-      <div key="2" className={s.text}>
-        <b>{userName}</b>: { text }
-      </div>
-    );
-
     return (
-      <div className={cn(s.root, alignRight && s.alignRight)}>
-        {alignRight ? [Text, Avatar] : [Avatar, Text]}
-      </div>
+      <MessageView
+        text={<span className={s.text}><b>{userName}</b>: { text }</span>}
+        userAvatar={userAvatar}
+        userName={userName}
+        alignRight={alignRight}
+      />
     );
   }
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
@@ -9,20 +10,22 @@ import CloseIcon from '../../icons/close';
 import Currency from '../../components/Currency';
 import AccountOperation from './AccountOperation';
 import MessageIcon from '../../icons/message';
+import { sendChatOperationMessage } from '../chat/ChatState';
 
 import s from './AccountItemView.css';
 import { formatDate } from '../../utils';
 
 
-const AccountOperationItem = ({ type, card, amount, currency }) => (
+const AccountOperationItem = ({ id, type, card, amount, currency, date, onShare }) => (
   <div className={s.opItem}>
-    <div className={s.share}>
+    <div onClick={() => onShare(id)} className={s.share}>
       <MessageIcon />
     </div>
     <AccountOperation
       type={type}
       card={card}
       amount={amount}
+      date={date}
       currency={currency}
     />
   </div>
@@ -32,8 +35,20 @@ const AccountOperationItem = ({ type, card, amount, currency }) => (
 @connect(state => ({
   accounts: state.accounts.accounts,
   operations: state.accounts.operations
-}))
+}), d => bindActionCreators({
+  sendChatOperationMessage
+}, d))
 export default class AccountItemView extends React.PureComponent {
+  handleOperationShare = opId => {
+    const { id } = this.props;
+
+    this.props.sendChatOperationMessage({
+      userAvatar: 'https://randomuser.me/api/portraits/men/35.jpg',
+      accountId: id,
+      opId
+    });
+  }
+
   render() {
     const { id, accounts, operations } = this.props;
 
@@ -82,10 +97,13 @@ export default class AccountItemView extends React.PureComponent {
           {ops && (ops.length > 0) ? (ops.map(op => (
             <AccountOperationItem
               key={op.id}
+              id={op.id}
               type={op.type}
               card={op.card}
+              date={op.date}
               amount={op.amount}
               currency={op.currency}
+              onShare={this.handleOperationShare}
             />
           ))) : <div className={s.emptyCaption}>Операций нет.</div>}
         </div>

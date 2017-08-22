@@ -8,11 +8,15 @@ const debug = require('debug')('rocket:chat-state');
 
 const uuid = require('uuid/v4');
 
+export const CHAT_MESSAGE_TEXT = 'CHAT_MESSAGE_TEXT';
+export const CHAT_MESSAGE_OPERATION = 'CHAT_MESSAGE_OPERATION';
+
+
 // initial state
 const INITIAL_MESSAGES = [
   {
     id: 0,
-    type: 'text',
+    type: CHAT_MESSAGE_TEXT,
     text: 'могу',
     userAvatar: 'https://randomuser.me/api/portraits/men/35.jpg',
     userName: 'Иван',
@@ -20,21 +24,21 @@ const INITIAL_MESSAGES = [
     date: moment().toJSON()
   }, {
     id: 1,
-    type: 'text',
+    type: CHAT_MESSAGE_TEXT,
     text: 'можете?',
     userAvatar: 'https://randomuser.me/api/portraits/men/51.jpg',
     userName: 'Евгений',
     date: moment('2017-03-07').toJSON()
   }, {
     id: 2,
-    type: 'text',
+    type: CHAT_MESSAGE_TEXT,
     text: 'можете? можете? можете? можете?м ожете?можете?можете?можете?можетеможетеможетеможете?можете????можете?',
     userAvatar: 'https://randomuser.me/api/portraits/men/51.jpg',
     userName: 'Евгений',
     date: moment('2017-03-05').toJSON()
   }, {
     id: 3,
-    type: 'text',
+    type: CHAT_MESSAGE_TEXT,
     text: 'можете?',
     userAvatar: 'https://randomuser.me/api/portraits/men/51.jpg',
     userName: 'Евгений',
@@ -58,7 +62,24 @@ export const CHAT_SEND_MESSAGE = 'chat/SEND_MESSAGE';
 export const sendChatTextMessage = ({ text, userAvatar, userName, fromMe }) => ({
   type: CHAT_SEND_MESSAGE,
   message: {
-    id: uuid(), date: moment().toJSON(), type: 'text', text, userAvatar, userName, fromMe
+    id: uuid(),
+    date: moment().toJSON(),
+    type: CHAT_MESSAGE_TEXT,
+    text,
+    userAvatar,
+    userName,
+    fromMe
+  }
+});
+
+export const sendChatOperationMessage = ({ accountId, opId, userAvatar }) => ({
+  type: CHAT_SEND_MESSAGE,
+  message: {
+    id: uuid(),
+    date: moment().toJSON(),
+    type: CHAT_MESSAGE_OPERATION,
+    accountId, opId,
+    userAvatar
   }
 });
 

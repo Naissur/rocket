@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Currency from '../../components/Currency';
 import Signed from '../../components/Signed';
@@ -35,4 +36,12 @@ export default class AccountOperation extends React.PureComponent {
     );
   }
 }
+
+AccountOperation.propTypes = {
+  type: PropTypes.string.isRequired,
+  card: PropTypes.string.isRequired,
+  amount: PropTypes.number.isRequired,
+  currency: PropTypes.string.isRequired,
+  date : PropTypes.any.isRequired
+};
 

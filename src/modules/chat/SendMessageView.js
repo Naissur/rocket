@@ -30,7 +30,6 @@ export default class ChatSendMessageView extends React.PureComponent {
 
   sendMessage = () => {
     this.props.sendChatTextMessage({
-      type: 'message',
       text: this.state.chatMessage,
       userAvatar: 'https://randomuser.me/api/portraits/men/35.jpg',
       userName: 'Иван',
