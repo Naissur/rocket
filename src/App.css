@@ -26,8 +26,8 @@ b {
 
 .accountsContainer {
   max-height: 100%;
-  max-width: 545px;
-  flex: 1;
+  max-width: 600px;
+  flex: 1.2;
 }
 
 
