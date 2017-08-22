@@ -29,6 +29,32 @@ const initialState = {
       amount: -96,
       currency: CURRENCY_USD
     }
+  }, {
+    id: 57890239,
+    balance: 10500,
+    currency: CURRENCY_RUB,
+
+    annualPercent: 8,
+    createdAt: moment('2016-03-01 20:03').toJSON(),
+
+    lastOperation: {
+      date: moment('2016-05-18 13:48').toJSON(),
+      amount: 500,
+      currency: CURRENCY_RUB
+    }
+  }, {
+    id: 57890238,
+    balance: 10500,
+    currency: CURRENCY_RUB,
+
+    annualPercent: 8,
+    createdAt: moment('2016-03-01 20:03').toJSON(),
+
+    lastOperation: {
+      date: moment('2016-05-18 13:48').toJSON(),
+      amount: 500,
+      currency: CURRENCY_RUB
+    }
   }]
 };
 

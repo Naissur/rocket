@@ -25,12 +25,16 @@ b {
 }
 
 .accountsContainer {
+  max-height: 100%;
   max-width: 545px;
   flex: 1;
 }
 
 
 .accountsInvestmentsView {
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .nav {
@@ -42,8 +46,9 @@ b {
 
 .accounts, .investments {
   display: block;
-  padding: 10px 40px;
   flex: 1;
+  padding: 10px 40px;
+  height: 40px;
 
   border-radius: 4px;
   border: solid 1px #52aff1;
