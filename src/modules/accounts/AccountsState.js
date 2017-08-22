@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-import { CURRENCY_RUB, CURRENCY_USD, OP_DEBIT } from '../../constants';
+import { CURRENCY_RUB, CURRENCY_USD, OP_DEBIT, OP_CREDIT } from '../../constants';
 
 const initialState = {
   accounts: [{
@@ -59,11 +59,19 @@ const initialState = {
 
   operations: {
     '57890456': [
-      { id: 1,
+      {
+        id: 1,
         date: moment('2016-03-08 19:21'),
         type: OP_DEBIT,
         card: '****4602',
         amount: 3500,
+        currency: CURRENCY_RUB
+      }, {
+        id: 2,
+        date: moment('2016-03-04 15:13'),
+        type: OP_CREDIT,
+        card: '****4602',
+        amount: 2500,
         currency: CURRENCY_RUB
       }
     ],
