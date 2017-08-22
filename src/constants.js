@@ -1,4 +1,7 @@
-export const CURRENCY_RUB = 'RUB';
-export const CURRENCY_USD = 'USD';
-export const CURRENCY_EUR = 'EUR';
+export const CURRENCY_RUB = 'RUB',
+  CURRENCY_USD = 'USD',
+  CURRENCY_EUR = 'EUR',
 
+  OP_DEBIT = 'OP_DEBIT',
+  OP_CREDIT = 'OP_CREDIT',
+  OP_INTEREST = 'OP_INTEREST';

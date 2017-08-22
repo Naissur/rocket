@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 
 import { Link } from 'react-router-dom';
 
@@ -8,9 +7,7 @@ import Currency from '../../components/Currency';
 import Signed from '../../components/Signed';
 
 import MaximizeIcon from '../../icons/maximize';
-
-
-const formatDate = date => moment(date).format('DD.MM.YYYY | HH:mm');
+import { formatDate } from '../../utils';
 
 
 export default class AccountView extends React.PureComponent {
