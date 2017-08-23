@@ -5,19 +5,27 @@ import PropTypes from 'prop-types';
 import { find, propEq } from 'ramda';
 
 import MessageView from './MessageView';
-import AccountOperation from '../accounts/AccountOperation';
+import AccountOperation from '../../components/AccountOperation';
 
 import s from './OperationMessageView.css';
 
 
 @connect(state => ({
-  operations: state.accounts.operations
+  accountOperations: state.accounts.operations,
+  investmentsOperations: state.investments.operations
 }))
 export default class OperationMessageView extends React.PureComponent {
   render() {
-    const { opId, accountId, userAvatar, operations } = this.props;
+    const {
+      opId, accountId, userAvatar,
+      accountOperations, investmentsOperations, investments
+    } = this.props;
 
-    const op = find(propEq('id', opId), operations[accountId]);
+    const findOp = ops => find(propEq('id', opId), ops);
+
+    const op = investments ?
+      findOp(investmentsOperations[accountId] || []) :
+      findOp(accountOperations[accountId] || []);
 
     if (!op) {
       return <noscript />;
@@ -53,6 +61,7 @@ export default class OperationMessageView extends React.PureComponent {
 OperationMessageView.propTypes = {
   userAvatar: PropTypes.string.isRequired,
   accountId: PropTypes.number.isRequired,
-  opId: PropTypes.number.isRequired
+  opId: PropTypes.number.isRequired,
+  investments: PropTypes.bool
 };
 

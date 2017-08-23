@@ -3,7 +3,8 @@ import {
   BrowserRouter as Router,
   Route,
   Redirect,
-  Link
+  Link,
+  Switch
 } from 'react-router-dom';
 import cn from 'classnames';
 
@@ -11,6 +12,7 @@ import ChatView from './modules/chat/ChatView';
 import AccountsView from './modules/accounts/AccountsView';
 import InvestmentsView from './modules/investments/InvestmentsView';
 import AccountItemView from './modules/accounts/AccountItemView';
+import InvestmentItemView from './modules/investments/InvestmentItemView';
 
 // import logo from './logo.svg';
 import s from './App.css';
@@ -25,13 +27,14 @@ const AccountsInvestmentsView = ({ match }) => {
         <Link className={cn(s.accounts, (url.match(/accounts/)) && s.active)} to="/accounts">
           Счета
         </Link>
-        <Link className={cn(s.investments, (url === '/investments') && s.active)} to="/investments">
+        <Link className={cn(s.investments, (url.match(/investments/)) && s.active)} to="/investments">
           Вклады
         </Link>
       </div>
-      <Route path="/accounts/:id" component={routeProps => <AccountItemView id={Number(routeProps.match.params.id)} />} />
       <Route exact path="/accounts" component={AccountsView} />
-      <Route path="/investments" component={InvestmentsView} />
+      <Route exact path="/investments" component={InvestmentsView} />
+      <Route path="/accounts/:id" component={routeProps => <AccountItemView id={Number(routeProps.match.params.id)} />} />
+      <Route path="/investments/:id" component={routeProps => <InvestmentItemView id={Number(routeProps.match.params.id)} />} />
     </div>
   );
 };
@@ -44,10 +47,13 @@ const BasicExample = () => (
       </div>
 
       <div className={s.accountsContainer}>
-        <Route path="/accounts/:id" component={AccountsInvestmentsView} />
-        <Route exact path="/accounts" component={AccountsInvestmentsView} />
-        <Route path="/investments" component={AccountsInvestmentsView} />
-        <Redirect to="/accounts" />
+        <Switch>
+          <Route exact path="/accounts" component={AccountsInvestmentsView} />
+          <Route exact path="/investments" component={AccountsInvestmentsView} />
+          <Route path="/accounts/:id" component={AccountsInvestmentsView} />
+          <Route path="/investments/:id" component={AccountsInvestmentsView} />
+          <Redirect from="*" to="/accounts" />
+        </Switch>
       </div>
     </div>
   </Router>

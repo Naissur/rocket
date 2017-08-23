@@ -10,13 +10,13 @@ import CloseIcon from '../../icons/close';
 import Currency from '../../components/Currency';
 import AccountOperation from '../../components/AccountOperation';
 import MessageIcon from '../../icons/message';
-import { sendChatOperationMessage } from '../chat/ChatState';
+import { sendChatInvestmentOperationMessage } from '../chat/ChatState';
 
-import s from './AccountItemView.css';
+import s from './InvestmentItemView.css';
 import { formatDate } from '../../utils';
 
 
-const AccountOperationItem = ({ id, type, card, amount, currency, date, onShare }) => (
+const InvestmentOperationItem = ({ id, type, card, amount, currency, date, onShare }) => (
   <div className={s.opItem}>
     <div onClick={() => onShare(id)} className={s.share}>
       <MessageIcon />
@@ -33,16 +33,16 @@ const AccountOperationItem = ({ id, type, card, amount, currency, date, onShare 
 
 
 @connect(state => ({
-  accounts: state.accounts.accounts,
-  operations: state.accounts.operations
+  investmentAccounts: state.investments.accounts,
+  operations: state.investments.operations
 }), d => bindActionCreators({
-  sendChatOperationMessage
+  sendChatInvestmentOperationMessage
 }, d))
-export default class AccountItemView extends React.PureComponent {
+export default class InvestmentItemView extends React.PureComponent {
   handleOperationShare = opId => {
     const { id } = this.props;
 
-    this.props.sendChatOperationMessage({
+    this.props.sendChatInvestmentOperationMessage({
       userAvatar: 'https://randomuser.me/api/portraits/men/35.jpg',
       accountId: id,
       opId
@@ -50,9 +50,9 @@ export default class AccountItemView extends React.PureComponent {
   }
 
   render() {
-    const { id, accounts, operations } = this.props;
+    const { id, investmentAccounts, operations } = this.props;
 
-    const account = find(propEq('id', id), accounts);
+    const account = find(propEq('id', id), investmentAccounts);
 
     if (!account) {
       return (
@@ -60,7 +60,7 @@ export default class AccountItemView extends React.PureComponent {
           <Link className={s.close} to="/accounts">
             <CloseIcon />
           </Link>
-          Счет не найден.
+          Вклад не найден.
         </div>
       );
     }
@@ -71,11 +71,11 @@ export default class AccountItemView extends React.PureComponent {
     return (
       <div className={s.root}>
         <div className={s.info}>
-          <Link className={s.close} to="/accounts">
+          <Link className={s.close} to="/investments">
             <CloseIcon />
           </Link>
           <h3 className={s.id}>
-            Счёт №{id}
+            Вклад №{id}
           </h3>
           <h2 className={s.balance}>
             {balance} <Currency currency={currency} />
@@ -95,7 +95,7 @@ export default class AccountItemView extends React.PureComponent {
             История операций
           </div>
           {ops && (ops.length > 0) ? (ops.map(op => (
-            <AccountOperationItem
+            <InvestmentOperationItem
               key={op.id}
               id={op.id}
               type={op.type}
@@ -112,7 +112,7 @@ export default class AccountItemView extends React.PureComponent {
   }
 }
 
-AccountItemView.propTypes = {
+InvestmentItemView.propTypes = {
   id: PropTypes.number.isRequired
 };
 

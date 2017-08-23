@@ -7,7 +7,7 @@ import moment from 'moment';
 
 import UserMessageView from './UserMessageView';
 import OperationMessageView from './OperationMessageView';
-import { CHAT_MESSAGE_TEXT, CHAT_MESSAGE_OPERATION } from './ChatState';
+import { CHAT_MESSAGE_TEXT, CHAT_MESSAGE_OPERATION, CHAT_MESSAGE_INVESTMENT_OPERATION } from './ChatState';
 
 
 import s from './ChatHistoryView.css';
@@ -38,6 +38,20 @@ class ChatMessage extends React.PureComponent {
           userAvatar={userAvatar}
           accountId={accountId}
           opId={opId}
+          alignRight
+        />
+      );
+    }
+
+    if (message.type === CHAT_MESSAGE_INVESTMENT_OPERATION) {
+      const { userAvatar, accountId, opId } = message;
+
+      return (
+        <OperationMessageView
+          userAvatar={userAvatar}
+          accountId={accountId}
+          opId={opId}
+          investments
           alignRight
         />
       );

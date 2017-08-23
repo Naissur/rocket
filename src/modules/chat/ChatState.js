@@ -8,8 +8,9 @@ const debug = require('debug')('rocket:chat-state');
 
 const uuid = require('uuid/v4');
 
-export const CHAT_MESSAGE_TEXT = 'CHAT_MESSAGE_TEXT';
-export const CHAT_MESSAGE_OPERATION = 'CHAT_MESSAGE_OPERATION';
+export const CHAT_MESSAGE_TEXT = 'CHAT_MESSAGE_TEXT',
+  CHAT_MESSAGE_OPERATION = 'CHAT_MESSAGE_OPERATION',
+  CHAT_MESSAGE_INVESTMENT_OPERATION = 'CHAT_MESSAGE_INVESTMENT_OPERATION';
 
 
 // initial state
@@ -78,6 +79,17 @@ export const sendChatOperationMessage = ({ accountId, opId, userAvatar }) => ({
     id: uuid(),
     date: moment().toJSON(),
     type: CHAT_MESSAGE_OPERATION,
+    accountId, opId,
+    userAvatar
+  }
+});
+
+export const sendChatInvestmentOperationMessage = ({ accountId, opId, userAvatar }) => ({
+  type: CHAT_SEND_MESSAGE,
+  message: {
+    id: uuid(),
+    date: moment().toJSON(),
+    type: CHAT_MESSAGE_INVESTMENT_OPERATION,
     accountId, opId,
     userAvatar
   }

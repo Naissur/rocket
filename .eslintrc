@@ -36,6 +36,7 @@
     "react/no-multi-comp": 0,
     "jsx-a11y/no-static-element-interactions": 0,
     "react/forbid-prop-types": 0,
+    "react/require-default-props": 0,
 
     "one-var": 0,
 
@@ -91,7 +92,7 @@
     "prefer-const": 1,
 
     // keep it simple
-    "complexity": [ 1, 5 ],
+    "complexity": [ 1, 6 ],
 
     // react
     "react/prefer-es6-class": 0,
